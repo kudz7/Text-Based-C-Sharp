@@ -11,7 +11,7 @@ namespace Adventurer
         public robber()
         {
             this.name = "Robber";
-            this.health = 25;
+            this.health = 20;
             this.weapon = new sword();
             this.armour = 5;
         }
