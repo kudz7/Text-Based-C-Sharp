@@ -43,7 +43,7 @@ namespace Adventurer
                     Console.WriteLine("Your adventure begins!");
                     Console.WriteLine($"A giant spider has attacked {player.name}");
                     spider e = new spider();
-                    while (e.health > 0 | player.health > 0)
+                    while (e.health > 0 & player.health > 0)
                     {
                         Console.WriteLine("Type 'a' to attack the spider");
                         string move = Console.ReadLine();
