@@ -58,7 +58,44 @@ namespace Adventurer
                             Console.WriteLine($"Spider has attacked {player.name} with its fangs! \n {player.name}'s health is now {player.health}");
                         }
                     }
-                    Console.WriteLine("The spider is dead! You win!");
+                    Console.WriteLine($"The spider is dead! {player.name} win!");
+                    while (true)
+                    {
+                        Console.WriteLine($"{player.name} finds a chest next to the dead spider, do you want to open it? \n Type 'y' to open. Type 'n' to ignore it");
+                        string options = Console.ReadLine();
+                        options = options.ToLower();
+                        if (options == "n")
+                        {
+                            Console.WriteLine($"{player.name} continues on through the forest.");
+                            break;
+                        }
+                        else if (options == "y")
+                        {
+                            while (true)
+                            {
+                                Console.WriteLine($"{player.name} opens the chest and finds two boxes labelled 1 and 2. Do you want to pick box 1 or box 2?");
+                                string box = Console.ReadLine();
+                                if (box == "1")
+                                {
+                                    Console.WriteLine($"{player.name} has found a chest plate! {player.name}'s armour is now {player.armour + 10}!");
+                                    player.armour += 10;
+                                    break;
+                                }
+                                else if (box == "2")
+                                {
+                                    player.health -= 5;
+                                    Console.WriteLine($"A baby spider jumped out of the box and bit {player.name} in the hand for 5 damage! {player.name}'s health is now {player.health}.");
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Pick a valid box");
+                                }
+                            }
+                        }
+                        break;
+                    }
+
                     break;
                 }
             }
