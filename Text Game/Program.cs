@@ -43,7 +43,7 @@ namespace Adventurer
                     Console.WriteLine("Your adventure begins!");
                     Console.WriteLine($"A giant spider has attacked {player.name}");
                     spider e = new spider();
-                    while (e.health > 0)
+                    while (e.health > 0 | player.health > 0)
                     {
                         Console.WriteLine("Type 'a' to attack the spider");
                         string move = Console.ReadLine();
@@ -58,7 +58,14 @@ namespace Adventurer
                             Console.WriteLine($"Spider has attacked {player.name} with its fangs! \n {player.name}'s health is now {player.health}");
                         }
                     }
-                    Console.WriteLine($"The spider is dead! {player.name} win!");
+                    if (e.health <= 0)
+                    {
+                        Console.WriteLine($"The spider is dead! {player.name} wins!");
+                    }
+                    else if (player.health <= 0)
+                    {
+                        Console.WriteLine($"{player.name} has died!");
+                    }
                     while (true)
                     {
                         Console.WriteLine($"{player.name} finds a chest next to the dead spider, do you want to open it? \n Type 'y' to open. Type 'n' to ignore it");
@@ -85,6 +92,11 @@ namespace Adventurer
                                 {
                                     player.health -= 5;
                                     Console.WriteLine($"A baby spider jumped out of the box and bit {player.name} in the hand for 5 damage! {player.name}'s health is now {player.health}.");
+                                    if(player.health <= 0)
+                                    {
+                                        Console.WriteLine($"{player.name} has died!");
+                                        Console.ReadLine();
+                                    }
                                     break;
                                 }
                                 else
@@ -97,7 +109,7 @@ namespace Adventurer
                     }
 
                     break;
-                }
+                }  
             }
 
             Console.ReadLine();
