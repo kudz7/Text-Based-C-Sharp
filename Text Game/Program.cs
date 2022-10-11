@@ -65,6 +65,7 @@ namespace Adventurer
                     else if (player.health <= 0)
                     {
                         Console.WriteLine($"{player.name} has died!");
+                        break;
                     }
                     while (true)
                     {
@@ -91,7 +92,7 @@ namespace Adventurer
                                 else if (box == "2")
                                 {
                                     player.health -= 5;
-                                    Console.WriteLine($"A baby spider jumped out of the box and bit {player.name} in the hand for 5 damage! {player.name}'s health is now {player.health}.");
+                                    Console.WriteLine($"A baby spider jumped out of the box and bit {player.name} in the hand for 5 damage! {player.name}'s health is now {player.health} and their armour is now {player.armour}.");
                                     if(player.health <= 0)
                                     {
                                         Console.WriteLine($"{player.name} has died!");
@@ -105,6 +106,35 @@ namespace Adventurer
                                 }
                             }
                         }
+                        break;
+                    }
+                    Console.WriteLine("As you travel through the forest, you come a fireplace. From the shadows, a robber with a sword attacks you.");
+                    robber enemy2 = new robber();
+
+                    while (enemy2.health > 0 & player.health > 0)
+                    {
+
+                        Console.WriteLine("Type 'a' to attack the robber");
+                        string move = Console.ReadLine();
+                        if (move == "a")
+                        {
+                            player.attack(enemy2, player.weapon);
+                            Console.WriteLine($"You have hit the robber with your {player.weapon} \n Robber's health is now {enemy2.health} and their armour is now {enemy2.armour}.");
+                        }
+                        if (enemy2.health > 0)
+                        {
+                            enemy2.attack(player, enemy2.weapon);
+                            Console.WriteLine($"Robber has attacked {player.name} with his sword! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
+                        }
+
+                    }
+                    if (enemy2.health <= 0)
+                    {
+                        Console.WriteLine($"The robber is dead! {player.name} wins!");
+                    }
+                    else if (player.health <= 0)
+                    {
+                        Console.WriteLine($"{player.name} has died!");
                         break;
                     }
 
