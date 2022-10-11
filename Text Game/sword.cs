@@ -12,7 +12,7 @@ namespace Adventurer
 
         public sword()
         {
-            this.damage = 15;
+            this.damage = 10;
         }
 
     }
