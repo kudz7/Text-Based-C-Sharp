@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Adventurer
 {
-    public class Knight : fighter
+    public class knight : fighter
     {
-        public Knight()
+        public knight()
         {
             this.name = "Knight";
             this.health = 50;
