@@ -16,7 +16,16 @@ namespace Adventurer
 
         public void attack(fighter target, weapon w)
         {
-            target.health -= w.damage;
+            target.health = (target.health + target.armour) - w.damage;
+            if(target.armour > 0)
+            {
+                target.armour -= w.damage;
+
+                if(target.armour < 0)
+                {
+                    target.armour = 0;
+                }
+            }
         }
 
 
