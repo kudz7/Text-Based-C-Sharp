@@ -166,6 +166,36 @@ namespace Adventurer
                             Console.WriteLine("Pick a valid option.");
                         }
                     }
+
+                    Console.WriteLine("As you continue your travels, you come across a small, secluded castle. A corrupt knight attacks you.");
+                    knight enemyKnight = new knight();
+
+                    while(player.health > 0 & enemyKnight.health > 0)
+                    {
+                        Console.WriteLine("Type 'a' to attack the corrupt knight");
+                        string move = Console.ReadLine();
+                        if (move.Equals("a"))
+                        {
+                            player.attack(enemyKnight, player.weapon);
+                            Console.WriteLine($"You have hit the corrupt knight with your {player.weapon} \n Knight's health is now {enemyKnight.health} and their armour is now {enemyKnight.armour}.");
+                        }
+                        if (enemyKnight.health > 0)
+                        {
+                            enemyKnight.attack(player, enemyKnight.weapon);
+                            Console.WriteLine($"The corrupt knight has attacked {player.name} with his sword! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
+                        }
+                    }
+
+                    if (enemyKnight.health <= 0)
+                    {
+                        Console.WriteLine($"The Knight is dead! {player.name} wins!");
+                    }
+                    else if (player.health <= 0)
+                    {
+                        Console.WriteLine($"{player.name} has died!");
+                        break;
+                    }
+
                     break;
                 }  
             }
