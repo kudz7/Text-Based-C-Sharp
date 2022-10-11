@@ -152,7 +152,7 @@ namespace Adventurer
                         if (options.Equals("y"))
                         {
                             player.health += 20;
-                            player.armour += 20;
+                            player.armour += 30;
                             Console.WriteLine($"{player.name} has found a bunch of armour and medicine. {player.name}'s health is {player.health} and {player.name}'s armour is now {player.armour}");
                             break;
                         }
@@ -175,6 +175,7 @@ namespace Adventurer
                         Console.WriteLine("Type 'a' to attack the corrupt knight");
                         string move = Console.ReadLine();
                         if (move.Equals("a"))
+
                         {
                             player.attack(enemyKnight, player.weapon);
                             Console.WriteLine($"You have hit the corrupt knight with your {player.weapon} \n Knight's health is now {enemyKnight.health} and their armour is now {enemyKnight.armour}.");
@@ -199,6 +200,10 @@ namespace Adventurer
                     break;
                 }  
             }
+
+            int score = player.health + player.armour;
+
+            Console.WriteLine($"Your have completed the game! \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
 
             Console.ReadLine();
         }
