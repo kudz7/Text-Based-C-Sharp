@@ -16,6 +16,37 @@ namespace Adventurer
             this.name = "knife";
         }
 
+        public override int checkCritical()
+        {
+            Random random = new Random();
+            int damageType = random.Next(0, 100);
+            int extraDamage;
+
+            if(damageType >=0 && damageType <= 5)
+            {
+                extraDamage = -this.damage;
+                Console.WriteLine("Miss! No damage done!");
+            }
+            else if (damageType >= 6 && damageType <= 15)
+            {
+                extraDamage = 5;
+                Console.WriteLine($"Critical hit! Extra {extraDamage} done!");
+            }
+
+            else if(damageType >= 16 && damageType <= 20)
+            {
+                extraDamage = 10;
+                Console.WriteLine($" Major critical hit! Extra {extraDamage} done!");
+            }
+
+            else
+            {
+                extraDamage = 0;
+            }
+
+            return extraDamage;
+        }
+
     }
 
 }
