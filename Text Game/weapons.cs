@@ -11,6 +11,7 @@ namespace Adventurer
     {
 
         public int damage;
+        public string name;
 
     }
 
