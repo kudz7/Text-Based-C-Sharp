@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Adventurer
 {
@@ -205,7 +206,47 @@ namespace Adventurer
 
             Console.WriteLine($"Your have completed the game! \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
 
+            string myConnectionStrng = "server=127.0.0.1;uid=root;" + "pwd=Deloitte1;database=gamescoreboard";
+            MySqlConnection cnn;
+            cnn = new MySqlConnection(myConnectionStrng);
+            try
+            {
+                cnn.Open();
+                Console.WriteLine("Connected!");
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                Console.WriteLine("Failed");
+            }
+
+            var cmd = new MySqlCommand();
+            cmd.Connection = cnn;
+
+            if (score < 0)
+            {
+
+                cmd.CommandText = $"INSERT INTO Scores (`CharacterName`, `Score`) VALUES ('{player.name}', {score})";
+                cmd.ExecuteNonQuery();
+            }
+
+            Console.WriteLine("Top scores");
+            cmd.CommandText = "SELECT * FROM Scores ORDER BY `Score` DESC LIMIT 5";
+
+            int rank = 1;
+
+            using (MySqlDataReader reader = cmd.ExecuteReader())
+
+            while (reader.Read())
+            {
+                Console.WriteLine(rank + ". " + "{0} {1}", reader.GetString(1), reader.GetInt32(2));
+                    rank += 1;
+            }
+
+            cnn.Close();
+
             Console.ReadLine();
+
         }
     }
 }
