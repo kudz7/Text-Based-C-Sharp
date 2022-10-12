@@ -11,6 +11,7 @@ namespace Adventurer
     {
         static void Main(string[] args)
         {
+            bool isDead = false;
             Console.WriteLine("What is your character's name?");
             string name = Console.ReadLine();
             player player = new player(name);
@@ -66,6 +67,7 @@ namespace Adventurer
                     else if (player.health <= 0)
                     {
                         Console.WriteLine($"{player.name} has died!");
+                        isDead = true;
                         break;
                     }
                     while (true)
@@ -98,6 +100,7 @@ namespace Adventurer
                                         if (player.health <= 0)
                                         {
                                             Console.WriteLine($"{player.name} has died!");
+                                            isDead = true;
                                             Console.ReadLine();
                                         }
                                         break;
@@ -143,6 +146,7 @@ namespace Adventurer
                     else if (player.health <= 0)
                     {
                         Console.WriteLine($"{player.name} has died!");
+                        isDead = true;
                         break;
                     }
 
@@ -196,6 +200,7 @@ namespace Adventurer
                     else if (player.health <= 0)
                     {
                         Console.WriteLine($"{player.name} has died!");
+                        isDead = true;
                         break;
                     }
 
@@ -205,7 +210,15 @@ namespace Adventurer
 
             int score = player.health + player.armour;
 
-            Console.WriteLine($"Your have completed the game! \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
+            if (isDead == false)
+            {
+
+                Console.WriteLine($"Congrats! You have completed the game :) \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
+            }
+            else
+            {
+                Console.WriteLine($"You have lost the game :( \n Better luck next time! \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
+            }
 
             string myConnectionStrng = "server=127.0.0.1;uid=root;" + "pwd=Deloitte1;database=gamescoreboard";
             MySqlConnection cnn;
@@ -213,7 +226,6 @@ namespace Adventurer
             try
             {
                 cnn.Open();
-                Console.WriteLine("Connected!");
 
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
@@ -224,12 +236,9 @@ namespace Adventurer
             var cmd = new MySqlCommand();
             cmd.Connection = cnn;
 
-            if (score < 0)
-            {
 
-                cmd.CommandText = $"INSERT INTO Scores (`CharacterName`, `Score`) VALUES ('{player.name}', {score})";
-                cmd.ExecuteNonQuery();
-            }
+            cmd.CommandText = $"INSERT INTO Scores (`CharacterName`, `Score`) VALUES ('{player.name}', {score})";
+            cmd.ExecuteNonQuery();
 
             Console.WriteLine("Top scores");
             cmd.CommandText = "SELECT * FROM Scores ORDER BY `Score` DESC LIMIT 5";
