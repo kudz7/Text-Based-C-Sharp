@@ -13,6 +13,13 @@ namespace Adventurer
         public int damage;
         public string name;
 
+        public int checkCritical()
+        {
+            Random random = new Random();
+            int damageType = random.Next(0, 100);
+            return damageType;
+        }
+
     }
 
 }
