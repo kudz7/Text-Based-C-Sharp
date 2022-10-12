@@ -50,7 +50,7 @@ namespace Adventurer
                         if (move.Equals("a"))
                         {
                             player.attack(e, player.weapon);
-                            Console.WriteLine($"You have hit the spider with your {player.weapon} \n spider's health is now {e.health}.");
+                            Console.WriteLine($"{player.name} has hit the spider with their {player.weapon.name} \n spider's health is now {e.health}.");
                         }
                         if (e.health > 0)
                         {
@@ -126,7 +126,7 @@ namespace Adventurer
                         if (move.Equals("a"))
                         {
                             player.attack(enemy2, player.weapon);
-                            Console.WriteLine($"You have hit the robber with your {player.weapon} \n Robber's health is now {enemy2.health} and their armour is now {enemy2.armour}.");
+                            Console.WriteLine($"{player.name} has hit the robber with their {player.weapon.name} \n Robber's health is now {enemy2.health} and their armour is now {enemy2.armour}.");
                         }
                         if (enemy2.health > 0)
                         {
@@ -178,7 +178,7 @@ namespace Adventurer
 
                         {
                             player.attack(enemyKnight, player.weapon);
-                            Console.WriteLine($"You have hit the corrupt knight with your {player.weapon} \n Knight's health is now {enemyKnight.health} and their armour is now {enemyKnight.armour}.");
+                            Console.WriteLine($"{player.name} has hit the corrupt knight with their {player.weapon.name} \n Knight's health is now {enemyKnight.health} and their armour is now {enemyKnight.armour}.");
                         }
                         if (enemyKnight.health > 0)
                         {
