@@ -16,13 +16,14 @@ namespace Adventurer
 
         public void attack(fighter target, weapon w)
         {
-            int damage = w.damage - target.armour;
+            int damageModifier = w.checkCritical();
+            int damage = (w.damage + damageModifier)  - target.armour;
 
             if(damage < 0)
             {
                 damage = 0;
             }
-            target.health -= damage;
+
             if(target.armour > 0)
             {
                 target.armour -= w.damage;
@@ -31,6 +32,11 @@ namespace Adventurer
                 {
                     target.armour = 0;
                 }
+            }
+
+            if(target.armour == 0)
+            {
+                target.health -= damage;
             }
         }
 
