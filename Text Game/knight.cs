@@ -13,7 +13,7 @@ namespace Adventurer
             this.name = "Knight";
             this.health = 30;
             this.weapon = new sword();
-            this.armour = 30;
+            this.armour = 20;
         }
     }
 }
