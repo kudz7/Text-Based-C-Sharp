@@ -45,7 +45,7 @@ namespace Adventurer
         {
             if (this.hasHealed == false)
             {
-                this.health += 10;
+                this.health += 15;
                 this.hasHealed = true;
             }
             else
