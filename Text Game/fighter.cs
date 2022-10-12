@@ -43,7 +43,15 @@ namespace Adventurer
 
         public void heal()
         {
-            this.health += 10;
+            if (this.hasHealed == false)
+            {
+                this.health += 10;
+                this.hasHealed = true;
+            }
+            else
+            {
+                Console.WriteLine("You cannot heal again.");
+            }
         }
 
 
