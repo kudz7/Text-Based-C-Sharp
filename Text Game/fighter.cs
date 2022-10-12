@@ -26,7 +26,7 @@ namespace Adventurer
 
             if(target.armour > 0)
             {
-                target.armour -= damageModifier + w.damage;
+                target.armour -= (damageModifier + w.damage);
 
                 if(target.armour < 0)
                 {
