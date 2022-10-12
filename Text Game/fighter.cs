@@ -13,6 +13,7 @@ namespace Adventurer
         public int health;
         public weapon weapon;
         public int armour;
+        public bool hasHealed;
 
         public void attack(fighter target, weapon w)
         {
@@ -38,6 +39,11 @@ namespace Adventurer
             {
                 target.health -= damage;
             }
+        }
+
+        public void heal()
+        {
+            this.health += 10;
         }
 
 
