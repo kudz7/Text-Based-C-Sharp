@@ -143,6 +143,7 @@ namespace Adventurer
                     else if (player.health <= 0)
                     {
                         Console.WriteLine($"{player.name} has died!");
+                        break;
                     }
 
                     Console.WriteLine("By the fireplace, you find a mysterious bag! Do you want to look in the bag? \n Type 'y' to look in the bag. Type 'n' to leave the bag.");
