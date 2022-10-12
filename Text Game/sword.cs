@@ -13,6 +13,7 @@ namespace Adventurer
         public sword()
         {
             this.damage = 10;
+            this.name = "sword";
         }
 
     }
