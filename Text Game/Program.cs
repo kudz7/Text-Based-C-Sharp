@@ -347,7 +347,7 @@ namespace Adventurer
                             if (hydraEnemy.health > 0)
                             {
                                 hydraEnemy.attack(player, hydraEnemy.weapon);
-                                Console.WriteLine($"The Hydra has attacked {player.name} with his sword! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
+                                Console.WriteLine($"The Hydra has attacked {player.name} with its fangs! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
                             }
                         }
 
