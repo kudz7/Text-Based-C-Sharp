@@ -12,7 +12,7 @@ namespace Adventurer
         {
             this.name = "Hydra";
             this.weapon = new sword();
-            this.health = 50;
+            this.health = 100;
             this.armour = 30;
         }
     }
