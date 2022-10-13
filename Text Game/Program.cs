@@ -43,8 +43,8 @@ namespace Adventurer
 
                 if (player.weapon != null)
                 {
-                    Console.WriteLine("Your adventure begins!");
-                    Console.WriteLine($"A giant spider has attacked {player.name}");
+                    Console.WriteLine($"Your adventure begins! {player.name}'s starting health is {player.health} and their armour is {player.armour}");
+                    Console.WriteLine($"A giant spider has attacked {player.name}.");
                     spider e = new spider();
                     while (e.health > 0 & player.health > 0)
                     {
