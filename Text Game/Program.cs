@@ -12,6 +12,7 @@ namespace Adventurer
         static void Main(string[] args)
         {
             bool isDead = false;
+            int bonusPoints = 0;
             Console.WriteLine("What is your character's name?");
             string name = Console.ReadLine();
             player player = new player(name);
@@ -22,6 +23,7 @@ namespace Adventurer
 
                 Console.WriteLine("Pick a weapon \n 1. Sword \n 2. Knife \n");
                 sword s = new sword();
+                knife k = new knife();
                 string weapon = Console.ReadLine();
                 weapon = weapon.ToLower();
 
@@ -31,7 +33,6 @@ namespace Adventurer
                 }
                 else if (weapon.Equals("2") | weapon.Equals("knife"))
                 {
-                    knife k = new knife();
                     player.weapon = k;
                 }
                 else
@@ -87,7 +88,8 @@ namespace Adventurer
                     while (true)
                     {
                         Console.WriteLine($"{player.name} finds a chest next to the dead spider, do you want to open it? \n Type 'y' to open. Type 'n' to ignore it");
-                        while (true) {
+                        while (true)
+                        {
                             string options = Console.ReadLine();
                             options = options.ToLower();
                             if (options.Equals("n"))
@@ -164,7 +166,7 @@ namespace Adventurer
                             enemy2.attack(player, enemy2.weapon);
                             Console.WriteLine($"Robber has attacked {player.name} with his sword! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
                         }
-                        
+
 
                     }
                     if (enemy2.health <= 0)
@@ -204,7 +206,7 @@ namespace Adventurer
                     Console.WriteLine("As you continue your travels, you come across a small, secluded castle. A corrupt knight attacks you.");
                     knight enemyKnight = new knight();
 
-                    while(player.health > 0 & enemyKnight.health > 0)
+                    while (player.health > 0 & enemyKnight.health > 0)
                     {
                         Console.WriteLine("Type 'a' to attack the corrupt knight");
                         Console.WriteLine("Type 'h' to heal yourself. You can only do this once in the game.");
@@ -246,16 +248,128 @@ namespace Adventurer
                         break;
                     }
 
-                    break;
-                }  
+                    bool finalBoss = false;
+
+                    if (player.weapon == k)
+                    {
+                        Console.WriteLine("Congrats on beating all of the enemies with only a knife you absolute legend. Do you want to do a final fight for extra points?");
+                        Console.WriteLine("Type 'y' to do the extra level. Type 'n' to end the game.");
+
+                        while (true)
+                        {
+                            string option = Console.ReadLine();
+                            option = option.ToLower();
+                            if (option.Equals("n"))
+                            {
+                                break;
+                            }
+                            else if (option.Equals("y"))
+                            {
+                                finalBoss = true;
+                                break;
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("Pick a valid option");
+                            }
+                        }
+
+
+                    }
+
+                    if (finalBoss == false)
+                    {
+
+                        break;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine($"{player.name} has entered the castle and finds medicine and armour from the corrupt knight. They rest in the caslte for the night.");
+                        player.health += 30;
+                        player.armour += 30;
+                        Console.WriteLine($"{player.name}'s health is now {player.health} and their armour is now {player.armour}");
+                        Console.WriteLine($"{player.health} can use their heal ability once this fight.");
+                        player.hasHealed = false;
+                        Console.WriteLine($"The next morning, the castle is attacked by a Hydra. As {player.name} rushes to defend it, they find a morning star. Do you want to use this weapon to fight the hydra? \n Enter 'y' to equip the morning star, 'n' to not.");
+                        morningStar playerMorningStar = new morningStar();
+                        while (true)
+                        {
+                            string option = Console.ReadLine();
+                            option = option.ToLower();
+                            if (option.Equals("n"))
+                            {
+                                break;
+                            }
+                            else if (option.Equals("y"))
+                            {
+                                player.weapon = playerMorningStar;
+                                break;
+                            }
+
+                            else
+                            {
+                                Console.WriteLine("Pick a valid option");
+                            }
+                        }
+                        hydra hydraEnemy = new hydra();
+                        while (player.health > 0 & hydraEnemy.health > 0)
+                        {
+                            Console.WriteLine("Type 'a' to attack the corrupt knight");
+                            Console.WriteLine("Type 'h' to heal yourself. You can only do this once in the game.");
+                            string move = Console.ReadLine();
+                            if (move.Equals("a"))
+
+                            {
+                                player.attack(hydraEnemy, player.weapon);
+                                Console.WriteLine($"{player.name} attacked the Hydra with their {player.weapon.name} \n Hydra's health is now {hydraEnemy.health} and their armour is now {hydraEnemy.armour}.");
+                            }
+                            else if (move.Equals("h"))
+                            {
+                                if (player.hasHealed == false)
+                                {
+                                    player.heal();
+                                    Console.WriteLine($"{player.name} has healed themselves. Their health is now {player.health}!");
+                                }
+                                else
+                                {
+                                    player.heal();
+                                }
+                            }
+
+                            if (hydraEnemy.health > 0)
+                            {
+                                hydraEnemy.attack(player, hydraEnemy.weapon);
+                                Console.WriteLine($"The Hydra has attacked {player.name} with his sword! \n {player.name}'s health is now {player.health} and their armour is now {player.armour}");
+                            }
+                        }
+
+                        if (hydraEnemy.health <= 0)
+                        {
+                            Console.WriteLine($"The Hydra is dead! {player.name} wins!");
+                            Console.WriteLine("You have an extra 50 points!");
+                            bonusPoints = 50;
+                            break;
+                        }
+                        else if (player.health <= 0)
+                        {
+                            Console.WriteLine($"{player.name} has died!");
+                            isDead = true;
+                            break;
+                        }
+
+                    }
+                }
             }
 
-            int score = player.health + player.armour;
+
+            int score = player.health + player.armour + bonusPoints;
 
             if (isDead == false)
             {
 
-                Console.WriteLine($"Congrats! You have completed the game :) \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n {player.name}'s final score is: {score}.");
+                Console.WriteLine($"Congrats! You have completed the game :) \n Your final armour was {player.armour}. \n Your final health was {player.health}. \n Your bonus points were {bonusPoints} \n {player.name}'s final score is: {score}.");
             }
             else
             {
