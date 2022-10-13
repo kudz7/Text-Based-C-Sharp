@@ -29,13 +29,13 @@ namespace Adventurer
             }
             else if (damageType >= 6 && damageType <= 15)
             {
-                extraDamage = 5;
+                extraDamage = 10;
                 Console.WriteLine($"Critical hit! Extra {extraDamage} done!");
             }
 
             else if(damageType >= 16 && damageType <= 20)
             {
-                extraDamage = 10;
+                extraDamage = 15;
                 Console.WriteLine($" Major critical hit! Extra {extraDamage} done!");
             }
 
