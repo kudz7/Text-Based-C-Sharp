@@ -28,7 +28,7 @@ namespace Adventurer
 
             else if(damageType >= 21 && damageType <= 50)
             {
-                extraDamage = 10;
+                extraDamage = 15;
                 Console.WriteLine($"Critical hit! Extra {extraDamage} done!");
             }
 
