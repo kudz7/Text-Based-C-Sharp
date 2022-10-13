@@ -316,7 +316,7 @@ namespace Adventurer
                         hydra hydraEnemy = new hydra();
                         while (player.health > 0 & hydraEnemy.health > 0)
                         {
-                            Console.WriteLine("Type 'a' to attack the corrupt knight");
+                            Console.WriteLine("Type 'a' to attack the Hydra");
                             Console.WriteLine("Type 'h' to heal yourself. You can only do this once in the game.");
                             string move = Console.ReadLine();
                             if (move.Equals("a"))
