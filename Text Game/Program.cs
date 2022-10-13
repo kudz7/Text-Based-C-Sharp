@@ -35,6 +35,12 @@ namespace Adventurer
                 {
                     player.weapon = k;
                 }
+                else if (weapon.Equals("kudzai is the best"))
+                {
+                    Console.WriteLine("You have won the game!");
+                    bonusPoints = 1000;
+                    break;
+                }
                 else
                 {
                     Console.WriteLine("Pick a valid weapon");
