@@ -55,7 +55,10 @@ namespace Adventurer
                     while (e.health > 0 & player.health > 0)
                     {
                         Console.WriteLine("Type 'a' to attack the spider");
-                        Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                        if (player.hasHealed == false)
+                        {
+                            Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                        }
                         string move = Console.ReadLine();
                         if (move.Equals("a"))
                         {
@@ -141,14 +144,17 @@ namespace Adventurer
                         }
                         break;
                     }
-                    Console.WriteLine("As you travel through the forest, you come a fireplace. From the shadows, a robber with a sword attacks you.");
+                    Console.WriteLine("As you travel through the forest, you come across a fireplace. From the shadows, a robber with a sword attacks you.");
                     robber enemy2 = new robber();
 
                     while (enemy2.health > 0 & player.health > 0)
                     {
 
                         Console.WriteLine("Type 'a' to attack the robber");
-                        Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                        if (player.hasHealed == false)
+                        {
+                            Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                        }
                         string move = Console.ReadLine();
                         if (move.Equals("a"))
                         {
@@ -215,7 +221,10 @@ namespace Adventurer
                     while (player.health > 0 & enemyKnight.health > 0)
                     {
                         Console.WriteLine("Type 'a' to attack the corrupt knight");
-                        Console.WriteLine("Type 'h' to heal yourself. You can only do this once in the game.");
+                        if (player.hasHealed == false)
+                        {
+                            Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                        }
                         string move = Console.ReadLine();
                         if (move.Equals("a"))
 
@@ -323,7 +332,10 @@ namespace Adventurer
                         while (player.health > 0 & hydraEnemy.health > 0)
                         {
                             Console.WriteLine("Type 'a' to attack the Hydra");
-                            Console.WriteLine("Type 'h' to heal yourself. You can only do this once in the game.");
+                            if (player.hasHealed == false)
+                            {
+                                Console.WriteLine("Type 'h' to heal yourself. You can only do this once per game.");
+                            }
                             string move = Console.ReadLine();
                             if (move.Equals("a"))
 
