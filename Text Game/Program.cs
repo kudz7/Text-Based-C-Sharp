@@ -305,7 +305,7 @@ namespace Adventurer
                         player.health += 30;
                         player.armour += 30;
                         Console.WriteLine($"{player.name}'s health is now {player.health} and their armour is now {player.armour}");
-                        Console.WriteLine($"{player.health} can use their heal ability once this fight.");
+                        Console.WriteLine($"{player.name} can use their heal ability once this fight.");
                         player.hasHealed = false;
                         Console.WriteLine($"The next morning, the castle is attacked by a Hydra. As {player.name} rushes to defend it, they find a morning star. Do you want to use this weapon to fight the hydra? \n Enter 'y' to equip the morning star, 'n' to not.");
                         morningStar playerMorningStar = new morningStar();
